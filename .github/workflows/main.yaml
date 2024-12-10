@@ -1,0 +1,21 @@
+name: Notify
+on:
+  push:
+    branches:
+      - main
+jobs:
+  telegram_notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Telegram Message Notify (Forked from telegram-action)
+        uses: Ofceab-Studio/telegram-action@1.0.1
+        with: 
+          token: ${{ secrets.TG_BOT_TOKEN }}
+          to: ${{ vars.TG_CHAT_ID }}
+          thread_id: ${{ vars.TG_TOPIC_ID }}
+          message: |
+            #FoixSchema (${{ github.actor }})
+            
+            ${{ github.event.head_commit.message }}
+            
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}

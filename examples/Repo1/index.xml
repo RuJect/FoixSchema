@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/RuJect/FoixSchema/refs/heads/main/src/repository.xsd"
+    name="floxi"
+    about="Official Foix repository"
+    default_maintainer="ruject"
+>
+    <maintainers>
+        <include href="./rus07tam" />
+    </maintainers>
+    <announcements>
+        <announcement id="1" title="Repo created">
+            <include href="./31-12-2024.md" />
+        </announcement>
+    </announcements>
+</repository>

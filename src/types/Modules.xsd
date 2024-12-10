@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="./Include.xsd" />
+    <xs:include schemaLocation="./Branches.xsd" />
+
+    <xs:complexType name="RefModule">
+        <xs:annotation>
+            <xs:documentation> Include a module </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="as" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation> The name with which the module is imported </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="repository" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The repository from which want to import the module. The default
+                    is the current repository</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="maintainer" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The maintainer from which need to import the module. By default,
+                    the default_maintainer of the selected repository</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The name of the module</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Modules">
+        <xs:sequence minOccurs="0">
+            <xs:element name="module" type="Module" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="include" type="IncludeXML" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="ref" type="RefModule" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Module">
+        <xs:sequence>
+            <xs:element name="branches" type="Branches" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>All branches of the module</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+
+        <xs:attribute name="name" type="Name" use="required">
+            <xs:annotation>
+                <xs:documentation> The module name must be unique relative to all modules of the
+                    parent maintainer </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="about" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Short description</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="default_branch" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>The branch used by default for this module. For example, during
+                    import or download</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

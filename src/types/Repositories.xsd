@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="./Include.xsd" />
+    <xs:include schemaLocation="./Maintainers.xsd" />
+    <xs:include schemaLocation="./Announcements.xsd" />
+    <xs:include schemaLocation="./Name.xsd" />
+
+    <xs:complexType name="Repositories">
+        <xs:sequence minOccurs="0">
+            <xs:element name="maintainer" type="Repository" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="include" type="IncludeXML" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Repository">
+        <xs:sequence>
+            <xs:element name="maintainers" type="Maintainers" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>All maintainers of the repository</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="children" type="Repositories" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Repositories that can be used (with an explicit name) if the
+                        current repository is the root one</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="announcements" type="Announcements" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>All announcements of the this repository</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="Name" use="required">
+            <xs:annotation>
+                <xs:documentation> It is desirable that the repository name does not match the
+                    existing ones that are used in the Foix community </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="about" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Short description</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="default_maintainer" type="Name" use="required" />
+    </xs:complexType>
+
+</xs:schema>

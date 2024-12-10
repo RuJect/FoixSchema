@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:complexType name="IncludeXML">
+        <xs:annotation>
+            <xs:documentation> Include local or remote XML </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="href" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation> Available formats: `https://path` or `http://path` - remote XML
+                    file. `./path` - local XML file in (current dir). </xs:documentation>
+                <xs:documentation> If `path` not ends with `.xml`, then it will be appended with
+                    `/index.xml`. </xs:documentation>
+                <xs:documentation> For example: </xs:documentation>
+                <xs:documentation> `./repo/rus07tam` -> `./repo/rus07tam/index.xml` </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="IncludeFile">
+        <xs:annotation>
+            <xs:documentation> Include local or remote file </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="href" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation> Available formats: `https://path` or `http://path` - remote XML
+                    file. `./path` - local file in (current dir). </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

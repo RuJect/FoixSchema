@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="./Include.xsd" />
+    <xs:include schemaLocation="./Name.xsd" />
+
+    <xs:complexType name="RefBranch">
+        <xs:annotation>
+            <xs:documentation> Include a branch </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="as" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation> The name with which the branch is imported </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="repository" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The repository from which want to import the branch. The default
+                    is the current repository</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="maintainer" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The maintainer from which need to import the branch. By default,
+                    the default_maintainer of the selected repository</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="module" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The module from which want to import the branch</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="Name" use="required">
+            <xs:annotation>
+                <xs:documentation>The name of the branch. By default, the default_branch of the
+                    selected module</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Branches">
+        <xs:sequence minOccurs="0">
+            <xs:element name="branch" type="Branch" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="include" type="IncludeXML" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="ref" type="RefBranch" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Branch">
+        <xs:attribute name="name" type="Name" use="required">
+            <xs:annotation>
+                <xs:documentation> The branch name must be unique relative to all branches of the
+                    parent module </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="git_url" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation> The git repository where the source code of the module is stored </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="git_branch" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation> Branch of the git repository </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="git_commit" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation> Commit of the git repository </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

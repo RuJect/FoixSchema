@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="./Include.xsd" />
+    <xs:include schemaLocation="./Modules.xsd" />
+
+    <xs:complexType name="RefMaintainer">
+        <xs:annotation>
+            <xs:documentation> Include a maintainer </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="as" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation> The name with which the maintainer is imported </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="repository" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The repository from which want to import the maintainer. The
+                    default is the current repository</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="name" type="Name" use="optional">
+            <xs:annotation>
+                <xs:documentation>The maintainer name. By default, the default_maintainer of the
+                    selected repository</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Maintainers">
+        <xs:sequence minOccurs="0">
+            <xs:element name="maintainer" type="Maintainer" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="include" type="IncludeXML" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="ref" type="RefMaintainer" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Maintainer">
+        <xs:sequence>
+            <xs:element name="modules" type="Modules" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>All modules of the maintainer</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+
+
+        <xs:attribute name="name" type="Name" use="required">
+            <xs:annotation>
+                <xs:documentation> The maintainer name must be unique relative to all maintainers of
+                    the parent repository </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="about" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Short description</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="email" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Contact email</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="website" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Contact website</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="github" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Contact github username (without @)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="telegram" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Contact telegram username (without @)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="./Include.xsd" />
+
+    <xs:complexType name="Announcements">
+        <xs:sequence minOccurs="0">
+            <xs:element name="announcement" type="Announcement" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="include" type="IncludeXML" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Announcement">
+        <xs:sequence>
+            <xs:element name="preview" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Preview for the announcement. Support markdown</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="256" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="content">
+                    <xs:annotation>
+                        <xs:documentation>Full content of the announcement. Support markdown</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="4096" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="include" type="IncludeFile"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:unsignedInt" use="required">
+            <xs:annotation>
+                <xs:documentation>The larger the id, the 'newer' the announcement will be</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="title" use="required">
+            <xs:annotation>
+                <xs:documentation>Title of the announcement</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="125" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

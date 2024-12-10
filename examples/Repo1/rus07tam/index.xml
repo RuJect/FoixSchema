@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maintainer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/RuJect/FoixSchema/refs/heads/main/src/maintainer.xsd"
+    name="rus07tam"
+    about="Owner of the RuJect"
+>
+    <modules>
+        <include href="./db.xml" />
+    </modules>
+</maintainer>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/RuJect/FoixSchema/refs/heads/main/src/module.xsd"
+    name="db"
+    about="Database manager"
+    default_branch="main"
+>
+    <branches>
+        <branch name="main" git_url="https://example.com/rus07tam/core" git_branch="main" />
+        <branch name="dev" git_url="https://example.com/rus07tam/core" git_branch="dev" />
+    </branches>
+</module>
